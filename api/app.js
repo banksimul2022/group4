@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const asiakasRouter = require('./routes/asiakas');
 const asiakas_has_tiliRouter = require('./routes/asiakas_has_tili');
-//const korttiRouter = require('./routes/kortti');
+const korttiRouter = require('./routes/kortti');
 const tiliRouter = require('./routes/tili');
 /*const tilitapahtumatRouter = require('./routes/tilitapahtumat');*/
 
@@ -23,7 +23,7 @@ app.use(cors());
 
 app.use('/asiakas', asiakasRouter);
 app.use('/asiakas_has_tili', asiakas_has_tiliRouter);
-//app.use('/kortti', korttiRouter);
+app.use('/kortti', korttiRouter);
 app.use('/tili', tiliRouter);
 /*app.use('/tilitapahtumat', tilitapahtumatRouter);*/
 
