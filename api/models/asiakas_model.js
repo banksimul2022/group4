@@ -9,8 +9,8 @@ const asiakas = {
   },
   add: function(asiakas, callback) {
     return db.query(
-      'insert into asiakas (Tunnus,Nimi,Osoite,Puhelinnumero) values(?,?,?,?)',
-      [asiakas.Tunnus, asiakas.Nimi, asiakas.Osoite, asiakas.Puhelinnumero],
+      'insert into asiakas (tunnus,nimi,osoite,puhelinnumero) values(?,?,?,?)',
+      [asiakas.tunnus, asiakas.nimi, asiakas.osoite, asiakas.puhelinnumero],
       callback
     );
   },
@@ -19,8 +19,8 @@ const asiakas = {
   },
   update: function(id, asiakas, callback) {
     return db.query(
-      'update asiakas set Nimi=?,Osoite=?, Puhelinnumero=? where tunnus=?',
-      [asiakas.Nimi, asiakas.Osoite, asiakas.Puhelinnumero, id],
+      'update asiakas set nimi=?,osoite=?, puhelinnumero=? where tunnus=?',
+      [asiakas.nimi, asiakas.osoite, asiakas.puhelinnumero, id],
       callback
     );
   }
