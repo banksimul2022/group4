@@ -25,12 +25,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
 app.use(cors());
 
+app.use('/login', loginRouter);
+app.use(authenticateToken);
 app.use('/asiakas', asiakasRouter);
 app.use('/asiakas_has_tili', asiakas_has_tiliRouter);
 app.use('/tili', tiliRouter);
 app.use('/tilitapahtumat', tilitapahtumatRouter);
-app.use('/login', loginRouter);
-app.use(authenticateToken);
 app.use('/kortti', korttiRouter);
 
 function authenticateToken(req, res, next) {
