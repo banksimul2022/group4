@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     objectLogin=new Login;
+    objectDLLPinCode=new DLLPinCode;
 }
 
 MainWindow::~MainWindow()
@@ -15,11 +16,18 @@ MainWindow::~MainWindow()
     delete objectLogin;
     ui=nullptr;
     objectLogin=nullptr;
+    delete objectDLLPinCode;
+    objectDLLPinCode=nullptr;
 }
 
 
 void MainWindow::on_btnLogin_clicked()
 {
-    objectLogin->show();
+    objectDLLPinCode->openDllDialog();
+    QString value=objectDLLPinCode->returnFromDll();
+    qDebug()<<value;
 }
+
+
+
 
