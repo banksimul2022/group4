@@ -8,7 +8,6 @@
 class DLLPinCode
 {
 public:
-    DLLPinCode();
     void DLLPINCODE_EXPORT openDllDialog();
     QString DLLPINCODE_EXPORT returnFromDll();
 private:
