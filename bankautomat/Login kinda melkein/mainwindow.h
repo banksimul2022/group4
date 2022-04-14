@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "login.h"
+#include "dllpincode.h"
 
 #include <QMainWindow>
 
@@ -23,5 +24,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Login *objectLogin;
+    DLLPinCode *objectDLLPinCode;
 };
 #endif // MAINWINDOW_H
