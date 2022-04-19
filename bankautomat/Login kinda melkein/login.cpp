@@ -1,29 +1,23 @@
 #include "login.h"
-#include "ui_login.h"
 #include "QDebug"
 
 Login::Login(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Login)
+    QDialog(parent)
 {
-    ui->setupUi(this);
     objectMyUrl=new MyUrl;
     base_url=objectMyUrl->getBase_url();
 }
 
 Login::~Login()
 {
-    delete ui;
-    ui=nullptr;
     delete objectKorttiMain;
     objectKorttiMain=nullptr;
 }
 
-void Login::on_btnLogin_clicked()
-{
+void Login::MainLogin(QString ParPin, QString ParKortinnumero){
     //qDebug()<<"base_url="+base_url;
-    kortinnumero=ui->leKortinnumero->text();
-    pin=ui->lePin->text();
+    kortinnumero=ParKortinnumero;
+    pin=ParPin;
     lukittu="2";
     objectKorttiMain=new KorttiMain(kortinnumero,lukittu);
     objectKorttiMain->show();
@@ -46,4 +40,3 @@ void Login::loginSlot(QNetworkReply *reply)
     response_data=reply->readAll();
     qDebug()<<response_data;
 }
-

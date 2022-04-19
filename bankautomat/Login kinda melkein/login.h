@@ -20,13 +20,13 @@ class Login : public QDialog
 public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
+    void MainLogin(QString ParPin, QString ParKortinnumero);
+
 
 private slots:
-    void on_btnLogin_clicked();
     void loginSlot(QNetworkReply *reply);
 
 private:
-    Ui::Login *ui;
     QString kortinnumero;
     QString pin;
     QString lukittu;
