@@ -1,10 +1,8 @@
-QT -= gui
+#QT -= gui
+QT += widgets
 
 TEMPLATE = lib
 DEFINES += DLLPINCODE_LIBRARY
-
-#QT -= gui
-QT += widgets
 
 CONFIG += c++11
 

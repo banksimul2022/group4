@@ -1,8 +1,5 @@
 #include "dllpincode.h"
 
-DLLPinCode::DLLPinCode()
-{
-}
 void DLLPinCode::openDllDialog()
 {
     objectDialog=new Dialog;
