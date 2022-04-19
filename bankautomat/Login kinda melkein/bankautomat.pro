@@ -24,7 +24,6 @@ HEADERS += \
 
 FORMS += \
     korttimain.ui \
-    login.ui \
     mainwindow.ui
 
 # Default rules for deployment.
