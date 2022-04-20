@@ -5,7 +5,7 @@ const kortti = require('../models/kortti_model');
 router.get('/:id?',
  function(request, response) {
   if (request.params.id) {
- kortti.getById(request.params.id, function(err, dbResult) {
+ kortti.getTilinumero(request.params.id, function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
