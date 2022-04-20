@@ -5,7 +5,7 @@ const tilitapahtumat = require('../models/tilitapahtumat_model');
 router.get('/:id?',
  function(request, response) {
   if (request.params.id) {
-    tilitapahtumat.getById(request.params.id, function(err, dbResult) {
+    tilitapahtumat.getTapahtumat(request.params.id, function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {

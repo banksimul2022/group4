@@ -5,7 +5,7 @@ const tili = require('../models/tili_model');
 router.get('/:id?',
  function(request, response) {
   if (request.params.id) {
-    tili.getById(request.params.id, function(err, dbResult) {
+    tili.getSaldo(request.params.id, function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
