@@ -25,7 +25,7 @@ void MainWindow::on_btnLogin_clicked()
 {
     objectDLLPinCode->openDllDialog();
     QString value=objectDLLPinCode->returnFromDll();
-    objectLogin->MainLogin(value, "1234");
+    objectLogin->MainLogin(value, "1111");
 }
 
 

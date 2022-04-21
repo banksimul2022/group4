@@ -15,12 +15,9 @@ Login::~Login()
 }
 
 void Login::MainLogin(QString ParPin, QString ParKortinnumero){
-    //qDebug()<<"base_url="+base_url;
+    qDebug()<<"base_url="+base_url;
     kortinnumero=ParKortinnumero;
     pin=ParPin;
-    lukittu="2";
-    objectKorttiMain=new KorttiMain(kortinnumero,lukittu);
-    objectKorttiMain->show();
 
     QJsonObject jsonObj;
     jsonObj.insert("kortinnumero",kortinnumero);
@@ -39,4 +36,11 @@ void Login::loginSlot(QNetworkReply *reply)
 {
     response_data=reply->readAll();
     qDebug()<<response_data;
+
+    if (response_data==check) {
+        qDebug()<<"Eat shit and die";
+    } else {
+        objectKorttiMain=new KorttiMain(kortinnumero,pin);
+        objectKorttiMain->show();
+    }
 }
