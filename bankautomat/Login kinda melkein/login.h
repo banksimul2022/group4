@@ -21,18 +21,18 @@ public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
     void MainLogin(QString ParPin, QString ParKortinnumero);
+    QString kortinnumero;
+    QString pin;
 
 
 private slots:
     void loginSlot(QNetworkReply *reply);
 
 private:
-    QString kortinnumero;
-    QString pin;
-    QString lukittu;
     KorttiMain *objectKorttiMain;
     MyUrl *objectMyUrl;
     QString base_url;
+    QString check = "false";
 
     QNetworkAccessManager *LoginManager;
     QNetworkReply *reply;
