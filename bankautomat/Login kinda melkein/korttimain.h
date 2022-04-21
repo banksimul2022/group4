@@ -14,6 +14,7 @@ class KorttiMain : public QDialog
 public:
     explicit KorttiMain(QString kortinnumero,QString pin, QWidget *parent = nullptr);
     ~KorttiMain();
+    void TapahtumatLista();
 
 private slots:
 

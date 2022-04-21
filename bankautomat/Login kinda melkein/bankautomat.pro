@@ -14,13 +14,15 @@ SOURCES += \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
-    myurl.cpp
+    myurl.cpp \
+    tapahtumat.cpp
 
 HEADERS += \
     korttimain.h \
     login.h \
     mainwindow.h \
-    myurl.h
+    myurl.h \
+    tapahtumat.h
 
 FORMS += \
     korttimain.ui \
