@@ -3,6 +3,7 @@
 
 #include "login.h"
 #include "dllpincode.h"
+#include "korttimain.h"
 
 #include <QMainWindow>
 
@@ -18,12 +19,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 private slots:
     void on_btnLogin_clicked();
+    void tokenSLOT(QByteArray);
 
 private:
     Ui::MainWindow *ui;
     Login *objectLogin;
     DLLPinCode *objectDLLPinCode;
+    QByteArray token;
+    KorttiMain *objectKorttiMain;
+    QString knumero;
 };
 #endif // MAINWINDOW_H

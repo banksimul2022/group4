@@ -4,14 +4,20 @@
 
 #include <QStandardItemModel>
 
-KorttiMain::KorttiMain(QString kortinnumero, QString pin, QWidget *parent) :
+KorttiMain::KorttiMain(QByteArray webtoken, QString kortinnumero, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::KorttiMain)
 {
     ui->setupUi(this);
-    ui->labelKortinnumero->setText(kortinnumero);
-    ui->labelPin->setText(pin);
+
+    objectDLLRestAPI = new DLLRestAPI;
+    objectDLLRestAPI->getTilinumero(kortinnumero, webtoken);
+    connect(objectDLLRestAPI,SIGNAL(tilinumeroSignal(QString)),
+            this,SLOT(tiliSLOT(QString)));
     TapahtumatLista();
+
+    ui->labelKortinnumero->setText(kortinnumero);
+    ui->labelPin->setText(webtoken);
 }
 
 KorttiMain::~KorttiMain()
@@ -52,6 +58,12 @@ void KorttiMain::on_btn_custom_clicked()
 void KorttiMain::on_btn_logout_clicked()
 {
     close();
+}
+
+void KorttiMain::tiliSLOT(QString tilin)
+{
+    Tilinumero = tilin;
+    ui->labelTilinumero->setText(Tilinumero);
 }
 
 void KorttiMain::TapahtumatLista()

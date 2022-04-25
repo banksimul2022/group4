@@ -38,3 +38,9 @@ win32: LIBS += -L$$PWD/../DLLPinCode/DLLPinCode/build/debug/ -lDLLPinCode
 
 INCLUDEPATH += $$PWD/../DLLPinCode/DLLPinCode
 DEPENDPATH += $$PWD/../DLLPinCode/DLLPinCode
+
+
+win32: LIBS += -L$$PWD/../DLLRestAPI/DLLRestAPI/build/debug/ -lDLLRestAPI
+
+INCLUDEPATH += $$PWD/../DLLRestAPI/DLLRestAPI
+DEPENDPATH += $$PWD/../DLLRestAPI/DLLRestAPI
