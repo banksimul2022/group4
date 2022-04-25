@@ -16,25 +16,25 @@ class DLLRESTAPI_EXPORT DLLRestAPI : public QObject
 public:
     DLLRestAPI();
     ~DLLRestAPI();
-void getTilinumero(QString kortinnumero, QString wtoken);
-void getBalance(QString kortinnumero, QString wtoken);
-void getWithdraw(QString kortinnumero, QString wtoken);
-void getTilitapahtumat(QString kortinnumero, QString wtoken);
-QString knumero, webtoken, tnumero;
+    void getTilinumero(QString kortinnumero, QString wtoken);
+    void getBalance(QString kortinnumero, QString wtoken);
+    void getWithdraw(QString kortinnumero, QString wtoken);
+    void getTilitapahtumat(QString kortinnumero, QString wtoken);
+    QString knumero, webtoken, tnumero;
 
 private:
-QNetworkAccessManager * getManager;
-QNetworkReply *reply;
-QByteArray response_data;
+    QNetworkAccessManager * getManager;
+    QNetworkReply *reply;
+    QByteArray response_data;
 
 private slots:
-void getTilinumeroSlot (QNetworkReply *reply);
+    void getTilinumeroSlot (QNetworkReply *reply);
 
 signals:
-void balanceSignal();
-void withdrawSignal();
-void tilinumeroSignal();
-void tilitapahtumatSignal();
+    void balanceSignal();
+    void withdrawSignal();
+    void tilinumeroSignal(QString);
+    void tilitapahtumatSignal();
 
 
 

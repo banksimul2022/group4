@@ -65,16 +65,16 @@ static const uint qt_meta_data_DLLRestAPI[] = {
  // signals: name, argc, parameters, tag, flags
        1,    0,   39,    2, 0x06 /* Public */,
        3,    0,   40,    2, 0x06 /* Public */,
-       4,    0,   41,    2, 0x06 /* Public */,
-       5,    0,   42,    2, 0x06 /* Public */,
+       4,    1,   41,    2, 0x06 /* Public */,
+       5,    0,   44,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    1,   43,    2, 0x08 /* Private */,
+       6,    1,   45,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void,
 
  // slots: parameters
@@ -91,7 +91,7 @@ void DLLRestAPI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->balanceSignal(); break;
         case 1: _t->withdrawSignal(); break;
-        case 2: _t->tilinumeroSignal(); break;
+        case 2: _t->tilinumeroSignal((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 3: _t->tilitapahtumatSignal(); break;
         case 4: _t->getTilinumeroSlot((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         default: ;
@@ -124,7 +124,7 @@ void DLLRestAPI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             }
         }
         {
-            using _t = void (DLLRestAPI::*)();
+            using _t = void (DLLRestAPI::*)(QString );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&DLLRestAPI::tilinumeroSignal)) {
                 *result = 2;
                 return;
@@ -193,9 +193,10 @@ void DLLRestAPI::withdrawSignal()
 }
 
 // SIGNAL 2
-void DLLRestAPI::tilinumeroSignal()
+void DLLRestAPI::tilinumeroSignal(QString _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3

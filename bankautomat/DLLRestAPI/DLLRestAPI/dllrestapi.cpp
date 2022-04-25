@@ -14,7 +14,7 @@ void DLLRestAPI::getTilinumero(QString kortinnumero, QString wtoken)
     QString site_url="http://localhost:3000/kortti/"+kortinnumero;
     QNetworkRequest request((site_url));
     //BASIC AUTENTIKOINTI ALKU
-    request.setRawHeader(QByteArray("Authorization"),wtoken.toLocal8Bit());
+    request.setRawHeader(QByteArray("Authorization"),QByteArray("Token "+wtoken.toLocal8Bit()));
     //BASIC AUTENTIKOINTI LOPPU
     getManager = new QNetworkAccessManager(this);
 
@@ -40,14 +40,15 @@ void DLLRestAPI::getTilitapahtumat(QString kortinnumero, QString wtoken)
 
 void DLLRestAPI::getTilinumeroSlot (QNetworkReply *reply)
 {
-    response_data=reply->readAll();
-     qDebug()<<"DATA : "+response_data;
+     response_data=reply->readAll();
+     qDebug()<<response_data;
      QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
      QJsonArray json_array = json_doc.array();
      QString tilinumero;
      foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
-        tilinumero+=QString::number(json_obj["Tilinumero"].toInt())+"\r";
+        tilinumero=QString::number(json_obj["tilinumero"].toInt());
+        emit tilinumeroSignal(tilinumero);
 }
      reply->deleteLater();
      getManager->deleteLater();
