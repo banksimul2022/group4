@@ -10,8 +10,7 @@ Login::Login(QWidget *parent) :
 
 Login::~Login()
 {
-    delete objectKorttiMain;
-    objectKorttiMain=nullptr;
+
 }
 
 void Login::MainLogin(QString ParPin, QString ParKortinnumero){
@@ -35,12 +34,11 @@ void Login::MainLogin(QString ParPin, QString ParKortinnumero){
 void Login::loginSlot(QNetworkReply *reply)
 {
     response_data=reply->readAll();
-    qDebug()<<response_data;
+    //qDebug()<<response_data;
 
     if (response_data==check) {
         qDebug()<<"Eat shit and die";
     } else {
-        objectKorttiMain=new KorttiMain(kortinnumero,pin);
-        objectKorttiMain->show();
+        emit tokenSignal(response_data);
     }
 }

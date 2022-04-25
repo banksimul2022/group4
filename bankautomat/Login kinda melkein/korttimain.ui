@@ -16,19 +16,22 @@
   <widget class="QLabel" name="labelPin">
    <property name="geometry">
     <rect>
-     <x>680</x>
+     <x>470</x>
      <y>540</y>
-     <width>100</width>
+     <width>311</width>
      <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>9</pointsize>
     </font>
    </property>
    <property name="text">
     <string>TextLabel</string>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="labelKortinnumero">
@@ -42,7 +45,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>9</pointsize>
     </font>
    </property>
    <property name="text">
@@ -134,6 +137,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="labelTilinumero">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>550</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
   </widget>
  </widget>
  <resources/>

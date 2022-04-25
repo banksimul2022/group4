@@ -1,7 +1,6 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-#include "korttimain.h"
 #include "myurl.h"
 
 #include <QDialog>
@@ -29,7 +28,6 @@ private slots:
     void loginSlot(QNetworkReply *reply);
 
 private:
-    KorttiMain *objectKorttiMain;
     MyUrl *objectMyUrl;
     QString base_url;
     QString check = "false";
@@ -37,6 +35,8 @@ private:
     QNetworkAccessManager *LoginManager;
     QNetworkReply *reply;
     QByteArray response_data;
+signals:
+    void tokenSignal(QByteArray);
 
 };
 
