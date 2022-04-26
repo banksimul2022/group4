@@ -18,7 +18,7 @@ public:
     ~DLLRestAPI();
     void getTilinumero(QString kortinnumero, QString wtoken);
     void getBalance(QString kortinnumero, QString wtoken);
-    void getWithdraw(QString kortinnumero, QString wtoken);
+    void getWithdraw(QString tilinum, QString wtoken, int maara);
     void getTilitapahtumat(QString kortinnumero, QString wtoken);
     QString knumero, webtoken, tnumero;
 
@@ -26,6 +26,7 @@ private:
     QNetworkAccessManager * getManager;
     QNetworkAccessManager * tiliManager;
     QNetworkAccessManager * saldoManager;
+    QNetworkAccessManager * putManager;
     QNetworkReply *reply;
     QByteArray response_data;
 
@@ -33,6 +34,7 @@ private slots:
     void getTilinumeroSlot (QNetworkReply *reply);
     void getSaldoSlot (QNetworkReply *reply);
     void getTilitapahtumatSlot(QNetworkReply *reply);
+    void withdrawSlot(QNetworkReply *reply);
 
 signals:
     void balanceSignal(QString);

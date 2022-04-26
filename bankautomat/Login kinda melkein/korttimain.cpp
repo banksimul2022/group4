@@ -47,7 +47,7 @@ KorttiMain::~KorttiMain()
 
 void KorttiMain::on_btn_20_clicked()
 {
-
+    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 20);
 }
 
 
