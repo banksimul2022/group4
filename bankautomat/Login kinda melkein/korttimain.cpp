@@ -47,25 +47,26 @@ KorttiMain::~KorttiMain()
 
 void KorttiMain::on_btn_20_clicked()
 {
-
+    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 20, Saldo.toInt());
+    close();
 }
 
 
 void KorttiMain::on_btn_40_clicked()
 {
-
+    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 40, Saldo.toInt());
 }
 
 
 void KorttiMain::on_btn_50_clicked()
 {
-
+    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 50, Saldo.toInt());
 }
 
 
 void KorttiMain::on_btn_100_clicked()
 {
-
+    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 100, Saldo.toInt());
 }
 
 
