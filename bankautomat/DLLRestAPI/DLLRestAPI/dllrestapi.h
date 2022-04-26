@@ -24,17 +24,21 @@ public:
 
 private:
     QNetworkAccessManager * getManager;
+    QNetworkAccessManager * tiliManager;
+    QNetworkAccessManager * saldoManager;
     QNetworkReply *reply;
     QByteArray response_data;
 
 private slots:
     void getTilinumeroSlot (QNetworkReply *reply);
+    void getSaldoSlot (QNetworkReply *reply);
+    void getTilitapahtumatSlot(QNetworkReply *reply);
 
 signals:
-    void balanceSignal();
+    void balanceSignal(QString);
     void withdrawSignal();
     void tilinumeroSignal(QString);
-    void tilitapahtumatSignal();
+    void tilitapahtumatSignal(QString);
 
 
 

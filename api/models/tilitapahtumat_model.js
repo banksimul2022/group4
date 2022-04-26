@@ -2,7 +2,7 @@ const db = require('../database');
 
 const tilitapahtumat = {
   getTapahtumat: function(id, callback) {
-    return db.query('select pvmaika, tapahtuma, summa from tilitapahtumat where id_tilinumero=?', [id], callback);
+    return db.query('select pvmaika, tapahtuma, summa from tilitapahtumat where id_tilinumero=? ORDER BY id_Tilitapahtuma DESC LIMIT 10', [id], callback);
   },
   
   getAll: function(callback) {
