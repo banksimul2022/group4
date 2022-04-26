@@ -24,8 +24,6 @@ KorttiMain::KorttiMain(QByteArray webtoken, QString kortinnumero, QWidget *paren
 
 
     objectDLLRestAPI->getTilinumero(Kortinnumero, WebToken);
-    objectDLLRestAPI->getBalance(Tilinumero, WebToken);
-
 
     lista.append(&t1);
     lista.append(&t2);
@@ -49,7 +47,7 @@ KorttiMain::~KorttiMain()
 
 void KorttiMain::on_btn_20_clicked()
 {
-objectDLLRestAPI->getTilitapahtumat(Tilinumero, WebToken);
+
 }
 
 
@@ -96,11 +94,8 @@ void KorttiMain::saldoSLOT(QString balance)
 void KorttiMain::tilitapahtumaSLOT(QString tap)
 {
     QString tapahtuma = tap;
-    qDebug()<<tapahtuma;
     QStringList templist1;
     templist1 = tapahtuma.split(",");
-    qDebug()<<templist1;
-
     int track = (templist1.size()-1)/3;
     int listtracker = 0;
     for (int i = 0; i <track; i++){
@@ -109,6 +104,7 @@ void KorttiMain::tilitapahtumaSLOT(QString tap)
         lista[i]->setSumma(templist1[listtracker+2]);
         listtracker += 3;
     }
+    TapahtumatLista();
 
 }
 
@@ -141,7 +137,12 @@ void KorttiMain::TapahtumatLista()
 
 void KorttiMain::on_tiltap_btn_clicked()
 {
+    objectDLLRestAPI->getTilitapahtumat(Tilinumero, WebToken);
+}
 
-    TapahtumatLista();
+
+void KorttiMain::on_btn_saldo_clicked()
+{
+    objectDLLRestAPI->getBalance(Tilinumero, WebToken);
 }
 

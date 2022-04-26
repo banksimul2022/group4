@@ -47,6 +47,8 @@ private slots:
 
     void on_tiltap_btn_clicked();
 
+    void on_btn_saldo_clicked();
+
 private:
     Ui::KorttiMain *ui;
     DLLRestAPI *objectDLLRestAPI;

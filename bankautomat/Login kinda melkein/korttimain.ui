@@ -89,19 +89,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="labelSaldo">
-   <property name="geometry">
-    <rect>
-     <x>220</x>
-     <y>50</y>
-     <width>71</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Saldo</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="tiltap_btn">
    <property name="geometry">
     <rect>
@@ -114,6 +101,32 @@
    <property name="text">
     <string>Näytä tilitapahtuma</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>40</y>
+     <width>160</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="labelSaldo">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_saldo">
+      <property name="text">
+       <string>Näytä Saldo</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
