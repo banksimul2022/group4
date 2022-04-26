@@ -13,45 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="labelPin">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>540</y>
-     <width>311</width>
-     <height>40</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-   <property name="scaledContents">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelKortinnumero">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>540</y>
-     <width>100</width>
-     <height>40</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>9</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
   <widget class="QTableView" name="tableView">
    <property name="geometry">
     <rect>
@@ -73,16 +34,6 @@
    <attribute name="horizontalHeaderMinimumSectionSize">
     <number>39</number>
    </attribute>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit_saldo">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>40</y>
-     <width>113</width>
-     <height>27</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
@@ -138,18 +89,44 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLabel" name="labelTilinumero">
+  <widget class="QPushButton" name="tiltap_btn">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>360</x>
      <y>550</y>
-     <width>111</width>
-     <height>31</height>
+     <width>431</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Näytä tilitapahtuma</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>40</y>
+     <width>160</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLabel" name="labelSaldo">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_saldo">
+      <property name="text">
+       <string>Näytä Saldo</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

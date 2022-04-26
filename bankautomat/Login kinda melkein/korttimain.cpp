@@ -1,6 +1,6 @@
 #include "korttimain.h"
 #include "ui_korttimain.h"
-#include "tapahtumat.h"
+
 
 #include <QStandardItemModel>
 
@@ -9,20 +9,40 @@ KorttiMain::KorttiMain(QByteArray webtoken, QString kortinnumero, QWidget *paren
     ui(new Ui::KorttiMain)
 {
     ui->setupUi(this);
-
+    WebToken = webtoken;
+    Kortinnumero = kortinnumero;
     objectDLLRestAPI = new DLLRestAPI;
-    objectDLLRestAPI->getTilinumero(kortinnumero, webtoken);
+
+
     connect(objectDLLRestAPI,SIGNAL(tilinumeroSignal(QString)),
             this,SLOT(tiliSLOT(QString)));
-    TapahtumatLista();
+    connect(objectDLLRestAPI,SIGNAL(balanceSignal(QString)),
+            this,SLOT(saldoSLOT(QString)));
+    connect(objectDLLRestAPI,SIGNAL(tilitapahtumatSignal(QString)),
+            this,SLOT(tilitapahtumaSLOT(QString)));
 
-    ui->labelKortinnumero->setText(kortinnumero);
-    ui->labelPin->setText(webtoken);
+
+
+    objectDLLRestAPI->getTilinumero(Kortinnumero, WebToken);
+
+    lista.append(&t1);
+    lista.append(&t2);
+    lista.append(&t3);
+    lista.append(&t4);
+    lista.append(&t5);
+    lista.append(&t6);
+    lista.append(&t7);
+    lista.append(&t8);
+    lista.append(&t9);
+    lista.append(&t10);
+
 }
 
 KorttiMain::~KorttiMain()
 {
     delete ui;
+    delete objectDLLRestAPI;
+    objectDLLRestAPI=nullptr;
 }
 
 void KorttiMain::on_btn_20_clicked()
@@ -63,45 +83,45 @@ void KorttiMain::on_btn_logout_clicked()
 void KorttiMain::tiliSLOT(QString tilin)
 {
     Tilinumero = tilin;
-    ui->labelTilinumero->setText(Tilinumero);
+}
+
+void KorttiMain::saldoSLOT(QString balance)
+{
+    Saldo = balance;
+    ui->labelSaldo->setText("Saldo: "+Saldo+"€");
+}
+
+void KorttiMain::tilitapahtumaSLOT(QString tap)
+{
+    QString tapahtuma = tap;
+    QStringList templist1;
+    templist1 = tapahtuma.split(",");
+    int track = (templist1.size()-1)/3;
+    int listtracker = 0;
+    for (int i = 0; i <track; i++){
+        lista[i]->setAika(templist1[listtracker]);
+        lista[i]->setTapahtuma(templist1[listtracker+1]);
+        lista[i]->setSumma(templist1[listtracker+2]);
+        listtracker += 3;
+    }
+    TapahtumatLista();
+
 }
 
 void KorttiMain::TapahtumatLista()
 {
-    QList<Tapahtumat*> tapahtumalista;
-    Tapahtumat tap1, tap2, tap3, tap4, tap5, tap6, tap7, tap8, tap9, tap10;
-    tapahtumalista.append(&tap1);
-    tapahtumalista.append(&tap2);
-    tapahtumalista.append(&tap3);
-    tapahtumalista.append(&tap4);
-    tapahtumalista.append(&tap5);
-    tapahtumalista.append(&tap6);
-    tapahtumalista.append(&tap7);
-    tapahtumalista.append(&tap8);
-    tapahtumalista.append(&tap9);
-    tapahtumalista.append(&tap10);
 
-    tap1.setAika("21-04-2022 10:00");
-    tap1.setTapahtuma("Nosto");
-    tap1.setSumma("30");
-    tap2.setAika("21-04-2022 10:00");
-    tap2.setTapahtuma("Nosto");
-    tap2.setSumma("15");
-    tap3.setAika("21-04-2022 10:00");
-    tap3.setTapahtuma("Nosto");
-    tap3.setSumma("20");
-
-    QStandardItemModel *table_model = new QStandardItemModel(tapahtumalista.size(),3);
+    QStandardItemModel *table_model = new QStandardItemModel(lista.size(),3);
     table_model->setHeaderData(0, Qt::Horizontal, QObject::tr("Aika"));
     table_model->setHeaderData(1, Qt::Horizontal, QObject::tr("Tapahtuma"));
     table_model->setHeaderData(2, Qt::Horizontal, QObject::tr("Summa"));
 
-    for (int row = 0; row < tapahtumalista.size(); ++row) {
-            QStandardItem *Aika = new QStandardItem((tapahtumalista[row]->getAika()));
+    for (int row = 0; row <lista.size(); ++row) {
+            QStandardItem *Aika = new QStandardItem((lista[row]->getAika()));
             table_model->setItem(row, 0, Aika);
-            QStandardItem *Tapahtuma = new QStandardItem((tapahtumalista[row]->getTapahtuma()));
+            QStandardItem *Tapahtuma = new QStandardItem((lista[row]->getTapahtuma()));
             table_model->setItem(row, 1, Tapahtuma);
-            QStandardItem *Summa = new QStandardItem((tapahtumalista[row]->getSumma()));
+            QStandardItem *Summa = new QStandardItem((lista[row]->getSumma()));
             table_model->setItem(row, 2, Summa);
     }
 
@@ -111,5 +131,18 @@ void KorttiMain::TapahtumatLista()
        ui->tableView->setColumnWidth(col,135);
     }
 
+}
+
+
+
+void KorttiMain::on_tiltap_btn_clicked()
+{
+    objectDLLRestAPI->getTilitapahtumat(Tilinumero, WebToken);
+}
+
+
+void KorttiMain::on_btn_saldo_clicked()
+{
+    objectDLLRestAPI->getBalance(Tilinumero, WebToken);
 }
 

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QDebug>
 #include "dllrestapi.h"
+#include "tapahtumat.h"
 
 namespace Ui {
 class KorttiMain;
@@ -17,6 +18,12 @@ public:
     explicit KorttiMain(QByteArray webtoken,QString kortinnumero, QWidget *parent = nullptr);
     ~KorttiMain();
     void TapahtumatLista();
+    QString Kortinnumero, Tilinumero, Saldo;
+    QByteArray WebToken;
+    QList<Tapahtumat*> lista;
+    Tapahtumat t1, t2, t3, t4, t5, t6, t7, t8, t9, t10;
+
+
 
 private slots:
 
@@ -34,10 +41,19 @@ private slots:
 
     void tiliSLOT(QString);
 
+    void saldoSLOT(QString);
+
+    void tilitapahtumaSLOT(QString);
+
+    void on_tiltap_btn_clicked();
+
+    void on_btn_saldo_clicked();
+
 private:
     Ui::KorttiMain *ui;
     DLLRestAPI *objectDLLRestAPI;
-    QString Tilinumero;
+
+
 };
 
 #endif // KORTTIMAIN_H
