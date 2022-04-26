@@ -18,7 +18,7 @@ public:
     ~DLLRestAPI();
     void getTilinumero(QString kortinnumero, QString wtoken);
     void getBalance(QString kortinnumero, QString wtoken);
-    void getWithdraw(QString tilinum, QString wtoken, int maara);
+    void getWithdraw(QString tilinum, QString wtoken, int maara, int saldo);
     void getTilitapahtumat(QString kortinnumero, QString wtoken);
     QString knumero, webtoken, tnumero;
 

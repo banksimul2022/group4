@@ -51,11 +51,11 @@ void DLLRestAPI::getTilitapahtumat(QString tilinum, QString wtoken)
     reply = getManager->get(request);
 }
 
-void DLLRestAPI::getWithdraw(QString tilinum, QString wtoken, int maara)
+void DLLRestAPI::getWithdraw(QString tilinum, QString wtoken, int maara, int saldo)
 {
-
+    saldo = saldo - maara;
     QJsonObject jsonObj;
-    jsonObj.insert("saldo",maara);
+    jsonObj.insert("saldo",saldo);
     qDebug()<<jsonObj;
 
     QString site_url="http://localhost:3000/tili/"+tilinum;
@@ -64,6 +64,7 @@ void DLLRestAPI::getWithdraw(QString tilinum, QString wtoken, int maara)
     request.setRawHeader(QByteArray("Authorization"),QByteArray("Token "+wtoken.toLocal8Bit()));
     //BASIC AUTENTIKOINTI LOPPU
 
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     putManager = new QNetworkAccessManager(this);
     connect(putManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(withdrawSlot(QNetworkReply*)));
 
