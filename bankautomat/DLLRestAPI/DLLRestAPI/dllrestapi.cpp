@@ -102,6 +102,12 @@ void DLLRestAPI::addTilitapahtuma(QString tapahtuma)
     reply = tilitapahtumaManager->post(request, QJsonDocument(jsonObj).toJson());
 }
 
+void DLLRestAPI::showPrompt()
+{
+    objectDialog=new Dialog;
+    objectDialog->exec();
+}
+
 
 void DLLRestAPI::Transaction()
 {
@@ -177,8 +183,10 @@ void DLLRestAPI::getSaldoSlotInternal(QNetworkReply *reply)
        saldo=(json_obj["saldo"].toString());
        if (Amount > saldo.toInt()){ //Tarkistetaan onko tililla tarpeeksi raahaa
            qDebug()<<"No monie";
+           showPrompt();
        } else if(Amount == 0) { //Tarkistetaan yrittääkö käyttäjä nostaa yli nollaa euroa
            qDebug()<<"Transaction Failed";
+           showPrompt();
        } else {
            emit balanceSignalInternal(saldo);
        }

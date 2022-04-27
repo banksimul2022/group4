@@ -38,6 +38,7 @@ void Login::loginSlot(QNetworkReply *reply)
 
     if (response_data==check) {
         qDebug()<<"Eat shit and die";
+        close();
     } else {
         emit tokenSignal(response_data);
     }

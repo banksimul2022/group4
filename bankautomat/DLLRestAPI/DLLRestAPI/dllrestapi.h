@@ -9,6 +9,7 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include <dialog.h>
 
 class DLLRESTAPI_EXPORT DLLRestAPI : public QObject
 {
@@ -32,6 +33,8 @@ private:
     QNetworkAccessManager *tilitapahtumaManager;
     QNetworkReply *reply;
     QByteArray response_data;
+    void showPrompt();
+    Dialog * objectDialog;
 
 private slots:
     void getTilinumeroSlot (QNetworkReply *reply);
