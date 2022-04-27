@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     objectDLLPinCode=new DLLPinCode;
     connect(objectLogin,SIGNAL(tokenSignal(QByteArray)),
             this, SLOT(tokenSLOT(QByteArray)));
-    knumero = "22";
+    knumero = "1111";
 
 }
 
