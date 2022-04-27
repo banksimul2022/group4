@@ -42,8 +42,9 @@ void DLLRestAPI::getBalance(QString tilinum, QString wtoken)
 }
 
 
-void DLLRestAPI::StartTransaction(QString tilinum, QString wtoken, int maara)
+void DLLRestAPI::StartTransaction(QString kortnum, QString tilinum, QString wtoken, int maara)
 {
+    knumero = kortnum;
     tnumero = tilinum;
     webtoken = wtoken;
     Amount = maara;
@@ -75,6 +76,33 @@ void DLLRestAPI::getTilitapahtumat(QString tilinum, QString wtoken)
 }
 
 
+void DLLRestAPI::addTilitapahtuma(QString tapahtuma)
+{
+    QDateTime date = QDateTime::currentDateTime();
+    QString DateTime = date.toString("yyyy.MM.dd hh:mm:ss");
+
+    QJsonObject jsonObj;
+
+    jsonObj.insert("id_tilinumero",tnumero);
+    jsonObj.insert("kortinnumero",knumero);
+    jsonObj.insert("pvmaika",DateTime);
+    jsonObj.insert("tapahtuma",tapahtuma);
+    jsonObj.insert("summa",Amount);
+
+    QString site_url="http://localhost:3000/tilitapahtumat";
+    QNetworkRequest request((site_url));
+    //BASIC AUTENTIKOINTI ALKU
+    request.setRawHeader(QByteArray("Authorization"),QByteArray("Token "+webtoken.toLocal8Bit()));
+    //BASIC AUTENTIKOINTI LOPPU
+
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    tilitapahtumaManager = new QNetworkAccessManager(this);
+    connect( tilitapahtumaManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(addTilitapahtumaSlot(QNetworkReply*)));
+
+    reply = tilitapahtumaManager->post(request, QJsonDocument(jsonObj).toJson());
+}
+
+
 void DLLRestAPI::Transaction()
 {
     qDebug()<<"Withdraw balance: "+Balance;
@@ -94,6 +122,9 @@ void DLLRestAPI::Transaction()
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     putManager = new QNetworkAccessManager(this);
+
+    DLLRestAPI::addTilitapahtuma("Nosto"); //Tilitapahtuma tehdaan
+
     connect(putManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(TransactSlot(QNetworkReply*)));
 
     reply = putManager->put(request, QJsonDocument(jsonObj).toJson());
@@ -175,6 +206,15 @@ void DLLRestAPI::TransactSlot(QNetworkReply *reply)
     qDebug()<<response_data;
     reply->deleteLater();
     putManager->deleteLater();
+}
+
+
+void DLLRestAPI::addTilitapahtumaSlot(QNetworkReply *reply)
+{
+    response_data=reply->readAll();
+    qDebug()<<response_data;
+    reply->deleteLater();
+    tilitapahtumaManager->deleteLater();
 }
 
 

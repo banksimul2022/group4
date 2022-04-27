@@ -47,33 +47,33 @@ KorttiMain::~KorttiMain()
 
 void KorttiMain::on_btn_20_clicked()
 {
-    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, 20);
+    objectDLLRestAPI->StartTransaction(Kortinnumero, Tilinumero, WebToken, 20);
 
 }
 
 
 void KorttiMain::on_btn_40_clicked()
 {
-    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, 40);
+    objectDLLRestAPI->StartTransaction(Kortinnumero, Tilinumero, WebToken, 40);
 }
 
 
 void KorttiMain::on_btn_50_clicked()
 {
-    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, 50);
+    objectDLLRestAPI->StartTransaction(Kortinnumero, Tilinumero, WebToken, 50);
 }
 
 
 void KorttiMain::on_btn_100_clicked()
 {
-    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, 100);
+    objectDLLRestAPI->StartTransaction(Kortinnumero, Tilinumero, WebToken, 100);
 }
 
 
 void KorttiMain::on_btn_custom_clicked()
 {
     int custom_amount = ui->lineEdit_custom->text().toInt();
-    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, custom_amount);
+    objectDLLRestAPI->StartTransaction(Kortinnumero, Tilinumero, WebToken, custom_amount);
 
 }
 

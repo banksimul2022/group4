@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_DLLRestAPI_t {
-    QByteArrayData data[17];
-    char stringdata0[249];
+    QByteArrayData data[18];
+    char stringdata0[270];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -48,7 +48,8 @@ QT_MOC_LITERAL(12, 167, 20), // "getSaldoSlotInternal"
 QT_MOC_LITERAL(13, 188, 21), // "getTilitapahtumatSlot"
 QT_MOC_LITERAL(14, 210, 13), // "AllocateSaldo"
 QT_MOC_LITERAL(15, 224, 11), // "Transaction"
-QT_MOC_LITERAL(16, 236, 12) // "TransactSlot"
+QT_MOC_LITERAL(16, 236, 12), // "TransactSlot"
+QT_MOC_LITERAL(17, 249, 20) // "addTilitapahtumaSlot"
 
     },
     "DLLRestAPI\0balanceSignal\0\0"
@@ -57,7 +58,8 @@ QT_MOC_LITERAL(16, 236, 12) // "TransactSlot"
     "tilitapahtumatSignal\0getTilinumeroSlot\0"
     "QNetworkReply*\0reply\0getSaldoSlot\0"
     "getSaldoSlotInternal\0getTilitapahtumatSlot\0"
-    "AllocateSaldo\0Transaction\0TransactSlot"
+    "AllocateSaldo\0Transaction\0TransactSlot\0"
+    "addTilitapahtumaSlot"
 };
 #undef QT_MOC_LITERAL
 
@@ -67,7 +69,7 @@ static const uint qt_meta_data_DLLRestAPI[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -75,21 +77,22 @@ static const uint qt_meta_data_DLLRestAPI[] = {
        6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   79,    2, 0x06 /* Public */,
-       3,    1,   82,    2, 0x06 /* Public */,
-       4,    0,   85,    2, 0x06 /* Public */,
-       5,    0,   86,    2, 0x06 /* Public */,
-       6,    1,   87,    2, 0x06 /* Public */,
-       7,    1,   90,    2, 0x06 /* Public */,
+       1,    1,   84,    2, 0x06 /* Public */,
+       3,    1,   87,    2, 0x06 /* Public */,
+       4,    0,   90,    2, 0x06 /* Public */,
+       5,    0,   91,    2, 0x06 /* Public */,
+       6,    1,   92,    2, 0x06 /* Public */,
+       7,    1,   95,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       8,    1,   93,    2, 0x08 /* Private */,
-      11,    1,   96,    2, 0x08 /* Private */,
-      12,    1,   99,    2, 0x08 /* Private */,
-      13,    1,  102,    2, 0x08 /* Private */,
-      14,    1,  105,    2, 0x08 /* Private */,
-      15,    0,  108,    2, 0x08 /* Private */,
-      16,    1,  109,    2, 0x08 /* Private */,
+       8,    1,   98,    2, 0x08 /* Private */,
+      11,    1,  101,    2, 0x08 /* Private */,
+      12,    1,  104,    2, 0x08 /* Private */,
+      13,    1,  107,    2, 0x08 /* Private */,
+      14,    1,  110,    2, 0x08 /* Private */,
+      15,    0,  113,    2, 0x08 /* Private */,
+      16,    1,  114,    2, 0x08 /* Private */,
+      17,    1,  117,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    2,
@@ -106,6 +109,7 @@ static const uint qt_meta_data_DLLRestAPI[] = {
     QMetaType::Void, 0x80000000 | 9,   10,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 9,   10,
     QMetaType::Void, 0x80000000 | 9,   10,
 
        0        // eod
@@ -130,6 +134,7 @@ void DLLRestAPI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 10: _t->AllocateSaldo((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 11: _t->Transaction(); break;
         case 12: _t->TransactSlot((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 13: _t->addTilitapahtumaSlot((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -164,6 +169,13 @@ void DLLRestAPI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             }
             break;
         case 12:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QNetworkReply* >(); break;
+            }
+            break;
+        case 13:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -247,13 +259,13 @@ int DLLRestAPI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }
