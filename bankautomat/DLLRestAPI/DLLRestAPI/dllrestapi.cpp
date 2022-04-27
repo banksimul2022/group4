@@ -175,7 +175,14 @@ void DLLRestAPI::getSaldoSlotInternal(QNetworkReply *reply)
     foreach (const QJsonValue &value, json_array) {
        QJsonObject json_obj = value.toObject();
        saldo=(json_obj["saldo"].toString());
-       emit balanceSignalInternal(saldo);
+       if (Amount > saldo.toInt()){ //Tarkistetaan onko tililla tarpeeksi raahaa
+           qDebug()<<"No monie";
+       } else if(Amount == 0) { //Tarkistetaan yrittääkö käyttäjä nostaa yli nollaa euroa
+           qDebug()<<"Transaction Failed";
+       } else {
+           emit balanceSignalInternal(saldo);
+       }
+
 }
     reply->deleteLater();
     saldoManager->deleteLater();
