@@ -81,6 +81,9 @@
      </widget>
     </item>
     <item>
+     <widget class="QLineEdit" name="lineEdit_custom"/>
+    </item>
+    <item>
      <widget class="QPushButton" name="btn_logout">
       <property name="text">
        <string>LOGOUT</string>

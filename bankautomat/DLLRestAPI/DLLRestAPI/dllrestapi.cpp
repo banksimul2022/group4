@@ -2,7 +2,10 @@
 
 DLLRestAPI::DLLRestAPI()
 {
-
+    connect(this, SIGNAL(balanceSignalInternal(QString)),
+            this, SLOT(AllocateSaldo(QString)));
+    connect(this, SIGNAL(startTransact()),
+            this, SLOT(Transaction()));
 }
 DLLRestAPI::~DLLRestAPI()
 {
@@ -23,6 +26,7 @@ void DLLRestAPI::getTilinumero(QString kortinnumero, QString wtoken)
     reply = tiliManager->get(request);
 }
 
+
 void DLLRestAPI::getBalance(QString tilinum, QString wtoken)
 {
     QString site_url="http://localhost:3000/tili/"+tilinum;
@@ -36,6 +40,25 @@ void DLLRestAPI::getBalance(QString tilinum, QString wtoken)
 
     reply = saldoManager->get(request);
 }
+
+
+void DLLRestAPI::StartTransaction(QString tilinum, QString wtoken, int maara)
+{
+    tnumero = tilinum;
+    webtoken = wtoken;
+    Amount = maara;
+    QString site_url="http://localhost:3000/tili/"+tilinum;
+    QNetworkRequest request((site_url));
+    //BASIC AUTENTIKOINTI ALKU
+    request.setRawHeader(QByteArray("Authorization"),QByteArray("Token "+wtoken.toLocal8Bit()));
+    //BASIC AUTENTIKOINTI LOPPU
+    saldoManager = new QNetworkAccessManager(this);
+
+    connect(saldoManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(getSaldoSlotInternal(QNetworkReply*)));
+
+    reply = saldoManager->get(request);
+}
+
 
 void DLLRestAPI::getTilitapahtumat(QString tilinum, QString wtoken)
 {
@@ -51,26 +74,30 @@ void DLLRestAPI::getTilitapahtumat(QString tilinum, QString wtoken)
     reply = getManager->get(request);
 }
 
-void DLLRestAPI::getWithdraw(QString tilinum, QString wtoken, int maara, int saldo)
+
+void DLLRestAPI::Transaction()
 {
-    saldo = saldo - maara;
+    qDebug()<<"Withdraw balance: "+Balance;
+
+    int amount = Balance.toInt() - Amount;
+    qDebug()<<"Amount after: "+QString::number(amount);
+
     QJsonObject jsonObj;
-    jsonObj.insert("saldo",saldo);
+    jsonObj.insert("saldo",amount);
     qDebug()<<jsonObj;
 
-    QString site_url="http://localhost:3000/tili/"+tilinum;
+    QString site_url="http://localhost:3000/tili/"+tnumero;
     QNetworkRequest request((site_url));
     //BASIC AUTENTIKOINTI ALKU
-    request.setRawHeader(QByteArray("Authorization"),QByteArray("Token "+wtoken.toLocal8Bit()));
+    request.setRawHeader(QByteArray("Authorization"),QByteArray("Token "+webtoken.toLocal8Bit()));
     //BASIC AUTENTIKOINTI LOPPU
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     putManager = new QNetworkAccessManager(this);
-    connect(putManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(withdrawSlot(QNetworkReply*)));
+    connect(putManager, SIGNAL(finished (QNetworkReply*)), this, SLOT(TransactSlot(QNetworkReply*)));
 
     reply = putManager->put(request, QJsonDocument(jsonObj).toJson());
 }
-
 
 
 void DLLRestAPI::getTilinumeroSlot (QNetworkReply *reply)
@@ -89,6 +116,7 @@ void DLLRestAPI::getTilinumeroSlot (QNetworkReply *reply)
      tiliManager->deleteLater();
 }
 
+
 void DLLRestAPI::getSaldoSlot(QNetworkReply *reply)
 {
     response_data=reply->readAll();
@@ -104,6 +132,24 @@ void DLLRestAPI::getSaldoSlot(QNetworkReply *reply)
     reply->deleteLater();
     saldoManager->deleteLater();
 }
+
+
+void DLLRestAPI::getSaldoSlotInternal(QNetworkReply *reply)
+{
+    response_data=reply->readAll();
+    qDebug()<<response_data;
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonArray json_array = json_doc.array();
+    QString saldo;
+    foreach (const QJsonValue &value, json_array) {
+       QJsonObject json_obj = value.toObject();
+       saldo=(json_obj["saldo"].toString());
+       emit balanceSignalInternal(saldo);
+}
+    reply->deleteLater();
+    saldoManager->deleteLater();
+}
+
 
 void DLLRestAPI::getTilitapahtumatSlot(QNetworkReply *reply)
 {
@@ -122,10 +168,19 @@ void DLLRestAPI::getTilitapahtumatSlot(QNetworkReply *reply)
     getManager->deleteLater();
 }
 
-void DLLRestAPI::withdrawSlot(QNetworkReply *reply)
+
+void DLLRestAPI::TransactSlot(QNetworkReply *reply)
 {
     response_data=reply->readAll();
     qDebug()<<response_data;
     reply->deleteLater();
     putManager->deleteLater();
+}
+
+
+void DLLRestAPI::AllocateSaldo(QString s)
+{
+    Balance = s;
+    emit startTransact();
+
 }

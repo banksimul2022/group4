@@ -47,31 +47,33 @@ KorttiMain::~KorttiMain()
 
 void KorttiMain::on_btn_20_clicked()
 {
-    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 20, Saldo.toInt());
-    close();
+    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, 20);
+
 }
 
 
 void KorttiMain::on_btn_40_clicked()
 {
-    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 40, Saldo.toInt());
+    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, 40);
 }
 
 
 void KorttiMain::on_btn_50_clicked()
 {
-    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 50, Saldo.toInt());
+    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, 50);
 }
 
 
 void KorttiMain::on_btn_100_clicked()
 {
-    objectDLLRestAPI->getWithdraw(Tilinumero, WebToken, 100, Saldo.toInt());
+    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, 100);
 }
 
 
 void KorttiMain::on_btn_custom_clicked()
 {
+    int custom_amount = ui->lineEdit_custom->text().toInt();
+    objectDLLRestAPI->StartTransaction(Tilinumero, WebToken, custom_amount);
 
 }
 
