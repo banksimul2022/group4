@@ -38,7 +38,7 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>20</x>
      <y>40</y>
      <width>131</width>
      <height>441</height>
@@ -81,6 +81,9 @@
      </widget>
     </item>
     <item>
+     <widget class="QLineEdit" name="lineEdit_custom"/>
+    </item>
+    <item>
      <widget class="QPushButton" name="btn_logout">
       <property name="text">
        <string>LOGOUT</string>
@@ -105,7 +108,7 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>180</x>
      <y>40</y>
      <width>160</width>
      <height>80</height>
