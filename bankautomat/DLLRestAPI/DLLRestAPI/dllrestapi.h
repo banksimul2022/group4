@@ -18,6 +18,8 @@ public:
     DLLRestAPI();
     ~DLLRestAPI();
     void getTilinumero(QString kortinnumero, QString wtoken);
+    void getCardState(QString kortinnumero, QString wtoken);
+    void LockCard(QString kortinnumero);
     void getBalance(QString kortinnumero, QString wtoken);
     void StartTransaction(QString kortinnumero, QString tilinum, QString wtoken, int maara);
     void getTilitapahtumat(QString kortinnumero, QString wtoken);
@@ -38,6 +40,8 @@ private:
 
 private slots:
     void getTilinumeroSlot (QNetworkReply *reply);
+    void getCardStateSlot (QNetworkReply *reply);
+    void updateCardStateSlot(QNetworkReply *reply);
     void getSaldoSlot (QNetworkReply *reply);
     void getSaldoSlotInternal (QNetworkReply *reply);
     void getTilitapahtumatSlot(QNetworkReply *reply);
@@ -54,6 +58,7 @@ signals:
     void startTransact();
     void withdrawSignal();
     void tilinumeroSignal(QString);
+    void CardStateSignal(QString);
     void tilitapahtumatSignal(QString);
 
 

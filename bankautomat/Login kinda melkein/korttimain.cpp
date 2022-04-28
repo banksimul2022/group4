@@ -21,9 +21,8 @@ KorttiMain::KorttiMain(QByteArray webtoken, QString kortinnumero, QWidget *paren
     connect(objectDLLRestAPI,SIGNAL(tilitapahtumatSignal(QString)),
             this,SLOT(tilitapahtumaSLOT(QString)));
 
-
-
     objectDLLRestAPI->getTilinumero(Kortinnumero, WebToken);
+
 
     lista.append(&t1);
     lista.append(&t2);
@@ -48,7 +47,6 @@ KorttiMain::~KorttiMain()
 void KorttiMain::on_btn_20_clicked()
 {
     objectDLLRestAPI->StartTransaction(Kortinnumero, Tilinumero, WebToken, 20);
-
 }
 
 
