@@ -7,6 +7,7 @@
 #include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
+#include "dllrestapi.h"
 
 namespace Ui {
 class Login;
@@ -26,8 +27,12 @@ public:
 
 private slots:
     void loginSlot(QNetworkReply *reply);
+    void CardStateSLOT(QString);
 
 private:
+    void StartLogin();
+    int LoginAttempts = 0;
+    QString PrevCard;
     MyUrl *objectMyUrl;
     QString base_url;
     QString check = "false";
@@ -35,6 +40,7 @@ private:
     QNetworkAccessManager *LoginManager;
     QNetworkReply *reply;
     QByteArray response_data;
+    DLLRestAPI *objectDLLRestAPI;
 signals:
     void tokenSignal(QByteArray);
 

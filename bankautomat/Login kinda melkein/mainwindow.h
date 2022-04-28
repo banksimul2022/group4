@@ -24,6 +24,12 @@ private slots:
     void on_btnLogin_clicked();
     void tokenSLOT(QByteArray);
 
+    void on_btn_acc1_clicked();
+
+    void on_btn_acc2_clicked();
+
+    void on_btn_acc3_clicked();
+
 private:
     Ui::MainWindow *ui;
     Login *objectLogin;
