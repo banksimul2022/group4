@@ -13,16 +13,12 @@ CONFIG += c++11
 
 SOURCES += \
     dialog.cpp \
-    dllrestapi.cpp \
-    engine.cpp \
-    myurl.cpp
+    dllrestapi.cpp
 
 HEADERS += \
     DLLRestAPI_global.h \
     dialog.h \
-    dllrestapi.h \
-    engine.h \
-    myurl.h
+    dllrestapi.h
 
 # Default rules for deployment.
 unix {

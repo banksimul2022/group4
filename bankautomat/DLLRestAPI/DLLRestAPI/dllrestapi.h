@@ -2,8 +2,6 @@
 #define DLLRESTAPI_H
 
 #include "DLLRestAPI_global.h"
-#include "engine.h"
-#include "myurl.h"
 #include <QObject>
 #include <QDialog>
 #include <QtNetwork>
