@@ -23,14 +23,6 @@ MainWindow::~MainWindow()
 
 }
 
-
-void MainWindow::on_btnLogin_clicked()
-{
-    knumero = "1234";
-    objectDLLPinCode->openDllDialog();
-    QString value=objectDLLPinCode->returnFromDll();
-    objectLogin->MainLogin(value, knumero);
-}
 void MainWindow::on_btn_acc1_clicked()
 {
     knumero = "1234";
