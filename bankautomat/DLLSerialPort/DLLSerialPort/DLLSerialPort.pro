@@ -2,7 +2,7 @@ QT -= gui
 
 TEMPLATE = lib
 DEFINES += DLLSERIALPORT_LIBRARY
-
+QT += serialport
 CONFIG += c++11
 
 # You can make your code fail to compile if it uses deprecated APIs.

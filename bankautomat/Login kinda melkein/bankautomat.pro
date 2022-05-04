@@ -44,3 +44,9 @@ win32: LIBS += -L$$PWD/../DLLRestAPI/DLLRestAPI/build/debug/ -lDLLRestAPI
 
 INCLUDEPATH += $$PWD/../DLLRestAPI/DLLRestAPI
 DEPENDPATH += $$PWD/../DLLRestAPI/DLLRestAPI
+
+
+win32: LIBS += -L$$PWD/../DLLSerialPort/DLLSerialPort/build/debug/ -lDLLSerialPort
+
+INCLUDEPATH += $$PWD/../DLLSerialPort/DLLSerialPort
+DEPENDPATH += $$PWD/../DLLSerialPort/DLLSerialPort

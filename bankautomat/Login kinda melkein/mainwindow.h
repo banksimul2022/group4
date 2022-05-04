@@ -4,6 +4,7 @@
 #include "login.h"
 #include "dllpincode.h"
 #include "korttimain.h"
+#include "dllserialport.h"
 
 #include <QMainWindow>
 
@@ -29,12 +30,18 @@ private slots:
 
     void on_btn_acc3_clicked();
 
+    void serialSLOT(QByteArray);
+
+    void on_btn_Serial_clicked();
+
 private:
     Ui::MainWindow *ui;
     Login *objectLogin;
     DLLPinCode *objectDLLPinCode;
     QByteArray token;
     KorttiMain *objectKorttiMain;
+    DLLSerialPort *objectSerialPort;
     QString knumero;
+    QByteArray recieved;
 };
 #endif // MAINWINDOW_H

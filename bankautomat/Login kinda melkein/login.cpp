@@ -22,6 +22,7 @@ void Login::MainLogin(QString ParPin, QString ParKortinnumero){
     qDebug()<<"base_url="+base_url;
     kortinnumero=ParKortinnumero;
     pin=ParPin;
+
     objectDLLRestAPI->getCardState(kortinnumero, "WebToken");
 }
 

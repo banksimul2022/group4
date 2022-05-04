@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     objectDLLPinCode=new DLLPinCode;
     connect(objectLogin,SIGNAL(tokenSignal(QByteArray)),
             this, SLOT(tokenSLOT(QByteArray)));
+    objectSerialPort=new DLLSerialPort;
+    connect(objectSerialPort,SIGNAL(RFID(QByteArray)),
+            this,SLOT(serialSLOT(QByteArray)));
 }
 
 MainWindow::~MainWindow()
@@ -29,6 +32,7 @@ void MainWindow::on_btn_acc1_clicked()
     objectDLLPinCode->openDllDialog();
     QString value=objectDLLPinCode->returnFromDll();
     objectLogin->MainLogin(value, knumero);
+
 }
 void MainWindow::on_btn_acc2_clicked()
 {
@@ -45,6 +49,11 @@ void MainWindow::on_btn_acc3_clicked()
     objectLogin->MainLogin(value, knumero);
 }
 
+void MainWindow::serialSLOT(QByteArray rfid)
+{
+    recieved = rfid;
+}
+
 
 void MainWindow::tokenSLOT(QByteArray tok)
 {
@@ -53,9 +62,14 @@ void MainWindow::tokenSLOT(QByteArray tok)
     objectKorttiMain->show();
 }
 
+void MainWindow::on_btn_Serial_clicked()
+{
+    objectSerialPort->Luku();
+    recieved = recieved.trimmed();
+    knumero = QString(recieved);
+    objectDLLPinCode->openDllDialog();
+    QString value=objectDLLPinCode->returnFromDll();
+    objectLogin->MainLogin(value, knumero);
 
-
-
-
-
+}
 
